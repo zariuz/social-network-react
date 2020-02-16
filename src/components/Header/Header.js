@@ -1,10 +1,11 @@
 import React from 'react';
+import s from './Header.module.css';
 
 const Header = () => {
   return (
-    <div className="header">
+    <header className={s.header}>
       <img src="https://seeklogo.net/wp-content/uploads/2017/04/New-Google-Earth-logo.png"></img>
-    </div>
+    </header>
   );
 };
 
