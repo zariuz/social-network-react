@@ -7,7 +7,8 @@ const Post = props => {
       <img src="https://international-advisory-experts.com/wp-content/uploads/2019/02/avatar-1-.png"></img>
       {props.message}
       <div>
-        <span>like</span>
+        <span>like </span>
+        {props.likesCount}
       </div>
     </div>
   );
