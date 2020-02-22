@@ -10,7 +10,6 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
 const App = props => {
-  console.log(props);
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -18,7 +17,11 @@ const App = props => {
         <Navbar />
         <div className="app-wrapper-content">
           <Route path="/profile">
-            <Profile state={props.state.profilePage} />
+            <Profile
+              profilePage={props.state.profilePage}
+              addPost={props.addPost}
+              updateNewPostText={props.updateNewPostText}
+            />
           </Route>
           <Route path="/dialogs">
             <Dialogs state={props.state.dialogsPage} />
