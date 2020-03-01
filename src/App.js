@@ -23,7 +23,7 @@ const App = props => {
             />
           </Route>
           <Route path="/dialogs">
-            <Dialogs state={props.state.dialogsPage} />
+            <Dialogs store={props.store} />
           </Route>
           <Route path="/news">
             <News />
