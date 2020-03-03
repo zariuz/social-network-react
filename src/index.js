@@ -8,7 +8,7 @@ import StoreContext from './StoreContext';
 
 let rerenderEntireTree = state => {
   ReactDOM.render(
-    <StoreContext.Provider>
+    <StoreContext.Provider value={store}>
       <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
     </StoreContext.Provider>,
     document.getElementById('root')
