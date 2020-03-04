@@ -7,6 +7,7 @@ import {
   sendMessageCreator
 } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
+import { connect } from 'react-redux';
 
 const DialogsContainer = props => {
   let state = props.store.getState().dialogsPage;
@@ -27,5 +28,23 @@ const DialogsContainer = props => {
     />
   );
 };
+
+let mapStateToProps = state => {
+  return {
+    dialogsPage: state.dialogsPage
+  };
+};
+
+let mapDispatchToProps = () => {
+  return {
+    updateNewMessageBody: () => {},
+    sendMessage: () => {}
+  };
+};
+
+const SuperDialogsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dialogs);
 
 export default DialogsContainer;
