@@ -6,20 +6,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 
-let rerenderEntireTree = state => {
+let rerenderEntireTree = () => {
   ReactDOM.render(
-    <Provider value={store}>
-      <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+    <Provider store={store}>
+      <App />
     </Provider>,
     document.getElementById('root')
   );
 };
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 
 store.subscribe(() => {
-  let state = store.getState();
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 });
 
 // If you want your app to work offline and load faster, you can change
