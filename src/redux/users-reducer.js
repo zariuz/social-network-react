@@ -1,10 +1,12 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
 
 let initialState = {
   users: [
     {
       id: 1,
+      photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
       followed: true,
       fullName: 'Jeniy',
       status: 'I am a boss',
@@ -12,6 +14,7 @@ let initialState = {
     },
     {
       id: 2,
+      photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
       followed: false,
       fullName: 'Dimych',
       status: 'I am a boss too',
@@ -19,6 +22,7 @@ let initialState = {
     },
     {
       id: 3,
+      photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
       followed: false,
       fullName: 'Sveta',
       status: 'I am a student',
@@ -26,6 +30,7 @@ let initialState = {
     },
     {
       id: 4,
+      photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
       followed: false,
       fullName: 'Sasha',
       status: 'I am a student',
@@ -33,6 +38,7 @@ let initialState = {
     },
     {
       id: 5,
+      photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
       followed: true,
       fullName: 'Vika',
       status: 'I am a student',
@@ -46,7 +52,6 @@ const usersReducer = (state = initialState, action) => {
     case FOLLOW:
       return {
         ...state,
-        //users: [...state.users],
         users: state.users.map(u => {
           if (u.id === action.userId) {
             return { ...u, followed: true };
@@ -56,7 +61,18 @@ const usersReducer = (state = initialState, action) => {
       };
     case UNFOLLOW:
       return {
-        ...state
+        ...state,
+        users: state.users.map(u => {
+          if (u.id === action.userId) {
+            return { ...u, followed: false };
+          }
+          return u;
+        })
+      };
+    case SET_USERS:
+      return {
+        ...state,
+        users: [...state.users, ...action.users]
       };
     default:
       return state;
@@ -65,5 +81,6 @@ const usersReducer = (state = initialState, action) => {
 
 export const followAC = userId => ({ type: FOLLOW, userId });
 export const unfollowAC = userId => ({ type: UNFOLLOW, userId });
+export const setUsersAC = user => ({ type: SET_USERS, user });
 
 export default usersReducer;
