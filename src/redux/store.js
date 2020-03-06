@@ -29,7 +29,41 @@ let store = {
       ],
       newMessageBody: ''
     },
-    sidebar: {}
+    sidebar: {},
+    usersPage: {
+      users: [
+        {
+          id: 1,
+          fullName: 'Jeniy',
+          status: 'I am a boss',
+          location: { city: 'SPb', country: 'Russia' }
+        },
+        {
+          id: 2,
+          fullName: 'Dimych',
+          status: 'I am a boss too',
+          location: { city: 'Minsk', country: 'Belarus' }
+        },
+        {
+          id: 3,
+          fullName: 'Sveta',
+          status: 'I am a student',
+          location: { city: 'Moscow', country: 'Russia' }
+        },
+        {
+          id: 4,
+          fullName: 'Sasha',
+          status: 'I am a student',
+          location: { city: 'Kiev', country: 'Ukraine' }
+        },
+        {
+          id: 5,
+          fullName: 'Vika',
+          status: 'I am a student',
+          location: { city: 'SPb', country: 'Russia' }
+        }
+      ]
+    }
   },
   _callSubscriber() {
     console.log('State is changed');

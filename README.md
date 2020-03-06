@@ -1,4 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React and react-redux
+Social Network for React and react-redux
+
+How to install and build:
+
+git clone
+cd social-network-react
+npm i
 
 ## Available Scripts
 
