@@ -34,30 +34,40 @@ let store = {
       users: [
         {
           id: 1,
+          photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
+          followed: true,
           fullName: 'Jeniy',
           status: 'I am a boss',
           location: { city: 'SPb', country: 'Russia' }
         },
         {
           id: 2,
+          photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
+          followed: false,
           fullName: 'Dimych',
           status: 'I am a boss too',
           location: { city: 'Minsk', country: 'Belarus' }
         },
         {
           id: 3,
+          photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
+          followed: false,
           fullName: 'Sveta',
           status: 'I am a student',
           location: { city: 'Moscow', country: 'Russia' }
         },
         {
           id: 4,
+          photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
+          followed: false,
           fullName: 'Sasha',
           status: 'I am a student',
           location: { city: 'Kiev', country: 'Ukraine' }
         },
         {
           id: 5,
+          photoUrl: 'https://vectorified.com/images/avatar-icon-png-29.png',
+          followed: true,
           fullName: 'Vika',
           status: 'I am a student',
           location: { city: 'SPb', country: 'Russia' }
