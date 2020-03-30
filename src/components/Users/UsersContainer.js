@@ -1,18 +1,14 @@
 import React from 'react';
 import {
-  follow,
-  unfollow,
-  setUsers,
+  followSuccess,
+  unfollowSuccess,
   setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
   toggleFollowingProgress,
-  getUsersThunkCreator
+  getUsers
 } from './../../redux/users-reducer';
 import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
-import { usersAPI } from '../../api/api';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -20,13 +16,15 @@ class UsersContainer extends React.Component {
   }
 
   onPageChanged = pageNumber => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.toggleIsFetching(true);
+    this.props.getUsers(pageNumber);
 
-    usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items);
-    });
+    // this.props.setCurrentPage(pageNumber);
+    // this.props.toggleIsFetching(true);
+
+    // usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+    //   this.props.toggleIsFetching(false);
+    //   this.props.setUsers(data.items);
+    // });
   };
 
   render() {
@@ -39,8 +37,8 @@ class UsersContainer extends React.Component {
           totalUsersCount={this.props.totalUsersCount}
           currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
-          unfollow={this.props.unfollow}
-          follow={this.props.follow}
+          unfollow={this.props.unfollowSuccess}
+          follow={this.props.followSuccess}
           isFetching={this.props.isFetching}
           toggleFollowingProgress={this.props.toggleFollowingProgress}
           followingInProgress={this.props.followingInProgress}
@@ -62,12 +60,9 @@ let mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setUsers,
+  followSuccess,
+  unfollowSuccess,
   setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
   toggleFollowingProgress,
-  getUsers: getUsersThunkCreator
+  getUsers
 })(UsersContainer);
