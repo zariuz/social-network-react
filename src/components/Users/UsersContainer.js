@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  followSuccess,
-  unfollowSuccess,
+  follow,
+  unfollow,
   setCurrentPage,
   toggleFollowingProgress,
   getUsers
@@ -37,8 +37,8 @@ class UsersContainer extends React.Component {
           totalUsersCount={this.props.totalUsersCount}
           currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
-          unfollow={this.props.unfollowSuccess}
-          follow={this.props.followSuccess}
+          unfollow={this.props.unfollow}
+          follow={this.props.follow}
           isFetching={this.props.isFetching}
           followingInProgress={this.props.followingInProgress}
         />
@@ -59,8 +59,8 @@ let mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  followSuccess,
-  unfollowSuccess,
+  follow,
+  unfollow,
   setCurrentPage,
   toggleFollowingProgress,
   getUsers
