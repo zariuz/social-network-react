@@ -2,7 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from '../../../components/common/Preloader/Preloader';
 
-const ProfileInfo = props => {
+const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />;
   }

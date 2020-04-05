@@ -1,25 +1,26 @@
 import React from 'react';
 import {
   updateNewMessageBodyCreator,
-  sendMessageCreator
+  sendMessageCreator,
 } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage,
+    isAuth: state.auth.isAuth,
   };
 };
 
-let mapDispatchToProps = dispatch => {
+let mapDispatchToProps = (dispatch) => {
   return {
-    updateNewMessageBody: body => {
+    updateNewMessageBody: (body) => {
       dispatch(updateNewMessageBodyCreator(body));
     },
     sendMessage: () => {
       dispatch(sendMessageCreator());
-    }
+    },
   };
 };
 
