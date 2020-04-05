@@ -9,8 +9,9 @@ import UsersContainer from './components/Users/UsersContainer';
 import Settings from './components/Settings/Settings';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
-const App = props => {
+const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -34,6 +35,9 @@ const App = props => {
           </Route>
           <Route path="/settings">
             <Settings />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
         </div>
       </div>
