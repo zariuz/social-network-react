@@ -4,7 +4,7 @@ How to install and build:
 
 git clone
 cd social-network-react
-npm i
+yarn install or npm install
 
 ## Available Scripts
 
