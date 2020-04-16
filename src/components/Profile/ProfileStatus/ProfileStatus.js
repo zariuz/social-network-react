@@ -1,7 +1,10 @@
 import React from 'react';
 import s from './ProfileStatus.module.css';
+//import { updateStatus } from './../../../redux/profile-reducer';
 
 class ProfileStatus extends React.Component {
+  statusInputRef = React.createRef();
+
   state = {
     editMode: false,
   };
@@ -12,6 +15,7 @@ class ProfileStatus extends React.Component {
 
   deactivateEditMode = () => {
     this.setState({ editMode: false });
+    this.props.updateStatus();
   };
 
   render() {
@@ -31,6 +35,7 @@ class ProfileStatus extends React.Component {
               onBlur={this.deactivateEditMode}
               type="text"
               value={this.props.status}
+              ref={this.statusInputRef}
             />
           </div>
         )}
