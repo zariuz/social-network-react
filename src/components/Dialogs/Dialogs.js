@@ -13,15 +13,11 @@ const AddMessageForm = (props) => {
         <Field
           name="newMessageBody"
           component="textarea"
-          onChange={onNewMessageChange}
-          value={newMessageBody}
           placeholder="Enter your message"
         ></Field>
       </div>
       <div>
-        <button type="submit" onClick={onSendMessageClick}>
-          Send
-        </button>
+        <button type="submit">Send</button>
       </div>
     </form>
   );
@@ -32,8 +28,8 @@ const AddMessageReduxForm = reduxForm({
 })(AddMessageForm);
 
 const Dialogs = (props) => {
-  const onSubmit = (formData) => {
-    console.log(formData);
+  const addNewMessage = (formData) => {
+    props.sendMessage(formData.newMessageBody);
   };
 
   let state = props.dialogsPage;
@@ -46,23 +42,12 @@ const Dialogs = (props) => {
     <Message message={m.message} key={m.id} id={m.id} />
   ));
 
-  let newMessageBody = state.newMessageBody;
-
-  let onSendMessageClick = () => {
-    props.sendMessage();
-  };
-
-  let onNewMessageChange = (e) => {
-    let body = e.target.value;
-    props.updateNewMessageBody(body);
-  };
-
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>{dialogsElements}</div>
       <div className={s.messages}>
         <div>{messagesElements}</div>
-        <AddMessageReduxForm onSubmit={onSubmit} />
+        <AddMessageReduxForm onSubmit={addNewMessage} />
       </div>
     </div>
   );
