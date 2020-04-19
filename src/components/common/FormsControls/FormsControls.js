@@ -1,11 +1,11 @@
 import React from 'react';
+import styles from './FormsControls.module.css';
 
-const FormsControls = () => {
+export const FormsControls = ({ input, type, placeholder }) => {
   return (
-    <div>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
+    <div className={`${styles.formControl} ${styles.error}`}>
+      <textarea {...input} type={type} placeholder={placeholder} />
+      <span>Some error</span>
     </div>
   );
 };
-
-export default FormsControls;
