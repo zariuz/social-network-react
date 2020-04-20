@@ -11,3 +11,14 @@ export const Textarea = ({ input, meta, type, placeholder }) => {
     </div>
   );
 };
+
+export const Input = ({ input, meta, type, placeholder }) => {
+  const hasError = meta.touched && meta.error;
+
+  return (
+    <div className={`${styles.formControl} ${hasError ? styles.error : ''}`}>
+      <input {...input} type={type} placeholder={placeholder} />
+      {hasError && <span>{meta.error}</span>}
+    </div>
+  );
+};
