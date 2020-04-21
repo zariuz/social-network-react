@@ -2,6 +2,7 @@
 }
 
 .formControl.error input {
+  border: 1px solid red;
 }
 
 .formControl.error textarea {
