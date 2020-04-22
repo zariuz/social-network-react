@@ -1,8 +1,6 @@
 import { authAPI } from '../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
-const USER_LOGIN = 'USER_LOGIN';
-const USER_LOGOUT = 'USER_LOGOUT';
 
 let initialState = {
   id: null,
@@ -16,37 +14,16 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.data,
-        isAuth: true,
-      };
-    case USER_LOGIN:
-      return {
-        ...state,
-        ...action.data,
-      };
-    case USER_LOGOUT:
-      return {
-        ...state,
-        ...action.data,
+        ...action.payload,
       };
     default:
       return state;
   }
 };
 
-export const setAuthUserData = (id, email, login) => ({
+export const setAuthUserData = (id, email, login, isAuth) => ({
   type: SET_USER_DATA,
-  data: { id, email, login },
-});
-
-export const setUserLogin = (id, email, login) => ({
-  type: USER_LOGIN,
-  data: { id, email, login },
-});
-
-export const setUserLogout = (id, email, login) => ({
-  type: USER_LOGOUT,
-  data: { id, email, login },
+  payload: { id, email, login, isAuth },
 });
 
 export const getAuthUserData = () => {
@@ -54,29 +31,27 @@ export const getAuthUserData = () => {
     authAPI.me().then((response) => {
       if (response.data.resultCode === 0) {
         let { id, login, email } = response.data.data;
-        dispatch(setAuthUserData(id, email, login));
+        dispatch(setAuthUserData(id, email, login, true));
       }
     });
   };
 };
 
-export const getUserLogin = () => {
+export const login = (email, password, remeberMe) => {
   return (dispatch) => {
-    authAPI.login().then((response) => {
+    authAPI.login(email, password, remeberMe).then((response) => {
       if (response.data.resultCode === 0) {
-        let { id, login, email } = response.data.data;
-        dispatch(setUserLogin(id, email, login));
+        dispatch(getAuthUserData());
       }
     });
   };
 };
 
-export const getUserLogout = () => {
+export const logout = () => {
   return (dispatch) => {
     authAPI.logout().then((response) => {
       if (response.data.resultCode === 0) {
-        let { id, login, email } = response.data.data;
-        dispatch(setUserLogout(id, email, login));
+        dispatch(setAuthUserData(null, null, null, false));
       }
     });
   };
