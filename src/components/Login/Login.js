@@ -4,6 +4,7 @@ import {
   required,
   maxLengthCreator,
 } from './../../utilities/validators/validators';
+import styles from './Login.module.css';
 import { Input } from '../common/FormsControls/FormsControls';
 import { connect } from 'react-redux';
 import { login } from './../../redux/auth-reducer';
@@ -38,6 +39,9 @@ const LoginForm = (props) => {
         <Field name="rememberMe" type="checkbox" component={Input} />
         remember me
       </div>
+      {props.error && (
+        <div className={styles.formSummaryError}>{props.error}</div>
+      )}
       <div>
         <button type="submit">Login</button>
       </div>
