@@ -1,37 +1,36 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { compose } from 'redux';
+import { Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import News from './components/News/News';
-import Music from './components/Music/Music';
 import UsersContainer from './components/Users/UsersContainer';
 import Settings from './components/Settings/Settings';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
+import { getAuthUserData } from './redux/auth-reducer';
 
-const App = (props) => {
-  return (
-    <BrowserRouter>
+class App extends React.Component {
+  componentDidMount() {
+    this.props.getAuthUserData();
+  }
+
+  render() {
+    return (
       <div className="app-wrapper">
         <HeaderContainer />
         <Navbar />
         <div className="app-wrapper-content">
           <Route path="/profile/:userId?">
-            <ProfileContainer store={props.store} />
+            <ProfileContainer />
           </Route>
           <Route path="/dialogs">
-            <DialogsContainer store={props.store} />
-          </Route>
-          <Route path="/news">
-            <News />
-          </Route>
-          <Route path="/music">
-            <Music />
+            <DialogsContainer />
           </Route>
           <Route path="/users">
-            <UsersContainer store={props.store} />
+            <UsersContainer />
           </Route>
           <Route path="/settings">
             <Settings />
@@ -41,8 +40,8 @@ const App = (props) => {
           </Route>
         </div>
       </div>
-    </BrowserRouter>
-  );
-};
+    );
+  }
+}
 
-export default App;
+export default compose(connect(null, { getAuthUserData }), withRouter)(App);
