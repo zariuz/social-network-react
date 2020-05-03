@@ -3,54 +3,43 @@ import s from './ProfileInfo.module.css';
 import Preloader from '../../../components/common/Preloader/Preloader';
 import ProfileStatusWithHooks from './../ProfileStatus/ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+  if (!profile) {
     return <Preloader />;
   }
+
+  const {
+    facebook,
+    website,
+    vk,
+    twitter,
+    instagram,
+    youtube,
+    github,
+    mainLink,
+  } = profile.contacts;
 
   return (
     <div>
       <div className={s.description}>
-        <img src={props.profile.photos.large} alt="Large avatar" />
-        <ProfileStatusWithHooks
-          status={props.status}
-          updateStatus={props.updateStatus}
-        />
-        <div>Full name: {props.profile.fullName}</div>
-        <div>About me: {props.profile.aboutMe}</div>
+        <img src={profile.photos.large} alt="Large avatar" />
+        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+        <div>Full name: {profile.fullName}</div>
+        <div>About me: {profile.aboutMe}</div>
+        <div>Looking for a job: {profile.lookingForAJob ? 'Yes' : 'No'}</div>
         <div>
-          Looking for a job: {props.profile.lookingForAJob ? 'Yes' : 'No'}
-        </div>
-        <div>
-          Looking for a job description:{' '}
-          {props.profile.lookingForAJobDescription}
+          Looking for a job description: {profile.lookingForAJobDescription}
         </div>
         <div>
           Contacts:
-          {props.profile.contacts.facebook ? (
-            <div>Facebook: {props.profile.contacts.facebook}</div>
-          ) : null}
-          {props.profile.contacts.website ? (
-            <div>Website: {props.profile.contacts.website}</div>
-          ) : null}
-          {props.profile.contacts.vk ? (
-            <div>VK: {props.profile.contacts.vk}</div>
-          ) : null}
-          {props.profile.contacts.twitter ? (
-            <div>Twitter: {props.profile.contacts.twitter}</div>
-          ) : null}
-          {props.profile.contacts.instagram ? (
-            <div>Instagram: {props.profile.contacts.instagram}</div>
-          ) : null}
-          {props.profile.contacts.youtube ? (
-            <div>Youtube: {props.profile.contacts.youtube}</div>
-          ) : null}
-          {props.profile.contacts.github ? (
-            <div>Github: {props.profile.contacts.github}</div>
-          ) : null}
-          {props.profile.contacts.mainLink ? (
-            <div>MainLink: {props.profile.contacts.mainLink}</div>
-          ) : null}
+          {facebook ? <div>Facebook: {facebook}</div> : null}
+          {website ? <div>Website: {website}</div> : null}
+          {vk ? <div>VK: {vk}</div> : null}
+          {twitter ? <div>Twitter: {twitter}</div> : null}
+          {instagram ? <div>Instagram: {instagram}</div> : null}
+          {youtube ? <div>Youtube: {youtube}</div> : null}
+          {github ? <div>Github: {github}</div> : null}
+          {mainLink ? <div>MainLink: {mainLink}</div> : null}
         </div>
       </div>
     </div>
