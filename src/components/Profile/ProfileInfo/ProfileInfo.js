@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './ProfileInfo.module.css';
+import style from './ProfileInfo.module.css';
 import Preloader from '../../../components/common/Preloader/Preloader';
 import ProfileStatusWithHooks from './../ProfileStatus/ProfileStatusWithHooks';
 
@@ -21,7 +21,7 @@ const ProfileInfo = ({ profile, status, updateStatus }) => {
 
   return (
     <div>
-      <div className={s.description}>
+      <div className={style.description}>
         <img src={profile.photos.large} alt="Large avatar" />
         <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
         <div>Full name: {profile.fullName}</div>

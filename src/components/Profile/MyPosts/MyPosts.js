@@ -4,7 +4,7 @@ import {
   required,
   maxLengthCreator,
 } from './../../../utilities/validators/validators';
-import s from './MyPosts.module.css';
+import style from './MyPosts.module.css';
 import Post from './Post/Post';
 import { Textarea } from './../../common/FormsControls/FormsControls';
 
@@ -45,10 +45,10 @@ const MyPosts = ({ profilePage, addPost }) => {
   };
 
   return (
-    <div className={s.postsBlock}>
+    <div className={style.postsBlock}>
       <h3>My posts</h3>
       <AddPostReduxForm onSubmit={onAddPost} />
-      <div className={s.posts}>{postsElements}</div>
+      <div className={style.posts}>{postsElements}</div>
     </div>
   );
 };
