@@ -10,9 +10,7 @@ import { Textarea } from './../../common/FormsControls/FormsControls';
 
 const maxLength15 = maxLengthCreator(15);
 
-const AddPostForm = (props) => {
-  const { handleSubmit } = props;
-
+const AddPostForm = ({ handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -35,15 +33,15 @@ const AddPostReduxForm = reduxForm({
   form: 'profileAddPostForm',
 })(AddPostForm);
 
-const MyPosts = (props) => {
-  let state = props.profilePage;
+const MyPosts = ({ profilePage, addPost }) => {
+  let state = profilePage;
 
   let postsElements = state.posts.map((post) => (
     <Post message={post.message} key={post.id} likesCount={post.likesCount} />
   ));
 
   let onAddPost = (formData) => {
-    props.addPost(formData.newPostText);
+    addPost(formData.newPostText);
   };
 
   return (

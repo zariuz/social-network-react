@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   follow,
   unfollow,
@@ -20,7 +20,7 @@ import {
   getFollowingInProgress,
 } from './../../redux/users-selectors';
 
-class UsersContainer extends React.Component {
+class UsersContainer extends Component {
   componentDidMount() {
     const { currentPage, pageSize } = this.props;
     this.props.requestUsers(currentPage, pageSize);

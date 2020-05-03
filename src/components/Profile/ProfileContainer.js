@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import {
@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
-class ProfileContainer extends React.Component {
+class ProfileContainer extends Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
