@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ import Login from './components/Login/Login';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 
-class App extends React.Component {
+class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
   }

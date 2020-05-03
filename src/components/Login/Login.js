@@ -12,9 +12,7 @@ import { Redirect } from 'react-router-dom';
 
 const maxLength30 = maxLengthCreator(30);
 
-const LoginForm = (props) => {
-  const { handleSubmit } = props;
-
+const LoginForm = ({ handleSubmit, error }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -39,9 +37,7 @@ const LoginForm = (props) => {
         <Field name="rememberMe" type="checkbox" component={Input} />
         remember me
       </div>
-      {props.error && (
-        <div className={styles.formSummaryError}>{props.error}</div>
-      )}
+      {error && <div className={styles.formSummaryError}>{error}</div>}
       <div>
         <button type="submit">Login</button>
       </div>
