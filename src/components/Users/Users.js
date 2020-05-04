@@ -21,10 +21,10 @@ const Users = ({
         onPageChanged={onPageChanged}
       />
       <div>
-        {users.map((user) => (
+        {users.map((user, index) => (
           <User
             user={user}
-            key={user.id}
+            index={index}
             followingInProgress={followingInProgress}
             unfollow={unfollow}
             follow={follow}

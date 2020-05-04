@@ -3,9 +3,9 @@ import style from './User.module.css';
 import userPhoto from '../../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
 
-const User = ({ followingInProgress, unfollow, follow, user, key }) => {
+const User = ({ followingInProgress, unfollow, follow, user, index }) => {
   return (
-    <div>
+    <div key={index}>
       <span>
         <div className={style.avatar}>
           <NavLink to={'/profile/' + user.id}>
