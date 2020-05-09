@@ -7,7 +7,7 @@ const Pagination = ({
   pageSize,
   currentPage,
   onPageChanged,
-  portionSize = 10,
+  portionSize,
 }) => {
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
 
@@ -22,7 +22,7 @@ const Pagination = ({
   let rightPortionPageNumber = portionNumber * portionSize;
 
   return (
-    <div className={styles.paginator}>
+    <div className={styles.pagination}>
       {portionNumber > 1 && (
         <button onClick={() => setPortionNumber(portionNumber - 1)}>
           PREV

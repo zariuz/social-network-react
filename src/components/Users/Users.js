@@ -5,6 +5,7 @@ import User from './User/User';
 const Users = ({
   totalUsersCount,
   pageSize,
+  portionSize,
   currentPage,
   onPageChanged,
   users,
@@ -17,6 +18,7 @@ const Users = ({
       <Pagination
         totalUsersCount={totalUsersCount}
         pageSize={pageSize}
+        portionSize={portionSize}
         currentPage={currentPage}
         onPageChanged={onPageChanged}
       />

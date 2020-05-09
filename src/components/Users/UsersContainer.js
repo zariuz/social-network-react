@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import {
   getUsers,
   getPageSize,
+  getPortionSize,
   getTotalUsersCount,
   getCurrentPage,
   getIsFetching,
@@ -37,6 +38,7 @@ class UsersContainer extends Component {
         <Users
           users={this.props.users}
           pageSize={this.props.pageSize}
+          portionSize={this.props.portionSize}
           totalUsersCount={this.props.totalUsersCount}
           currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
@@ -54,6 +56,7 @@ let mapStateToProps = (state) => {
   return {
     users: getUsers(state),
     pageSize: getPageSize(state),
+    portionSize: getPortionSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
