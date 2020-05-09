@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { compose } from 'redux';
 import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Settings from './components/Settings/Settings';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -12,6 +11,10 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
+
+const DialogsContainer = lazy(() =>
+  import('./components/Dialogs/DialogsContainer')
+);
 
 class App extends Component {
   componentDidMount() {
@@ -32,7 +35,9 @@ class App extends Component {
             <ProfileContainer />
           </Route>
           <Route path="/dialogs">
-            <DialogsContainer />
+            <Suspense fallback={<div>Загрузка...</div>}>
+              <DialogsContainer />
+            </Suspense>
           </Route>
           <Route path="/users">
             <UsersContainer />
