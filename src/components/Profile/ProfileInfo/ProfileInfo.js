@@ -1,9 +1,10 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
+import userPhoto from '../../../assets/images/user.png';
 import Preloader from '../../../components/common/Preloader/Preloader';
 import ProfileStatusWithHooks from './../ProfileStatus/ProfileStatusWithHooks';
 
-const ProfileInfo = ({ profile, status, updateStatus }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner }) => {
   if (!profile) {
     return <Preloader />;
   }
@@ -22,7 +23,8 @@ const ProfileInfo = ({ profile, status, updateStatus }) => {
   return (
     <div>
       <div className={style.description}>
-        <img src={profile.photos.large} alt="Large avatar" />
+        <img src={profile.photos.large || userPhoto} alt="Large avatar" />
+        {isOwner && <input type="file" />}
         <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
         <div>Full name: {profile.fullName}</div>
         <div>About me: {profile.aboutMe}</div>
