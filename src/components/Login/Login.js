@@ -1,10 +1,10 @@
 import React from 'react';
+import styles from './Login.module.css';
 import { Field, reduxForm } from 'redux-form';
 import {
   required,
   maxLengthCreator,
 } from './../../utilities/validators/validators';
-import styles from './Login.module.css';
 import { Input } from '../common/FormsControls/FormsControls';
 import { connect } from 'react-redux';
 import { login } from './../../redux/auth-reducer';
