@@ -4,7 +4,7 @@ import userPhoto from '../../../assets/images/user.png';
 import Preloader from '../../../components/common/Preloader/Preloader';
 import ProfileStatusWithHooks from './../ProfileStatus/ProfileStatusWithHooks';
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
   if (!profile) {
     return <Preloader />;
   }
@@ -20,12 +20,22 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner }) => {
     mainLink,
   } = profile.contacts;
 
+  const onMainFotoSelected = (e) => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
+  };
+
   return (
     <div>
       <div className={style.description}>
-        <img src={profile.photos.large || userPhoto} alt="Large avatar" />
-        {isOwner && <input type="file" />}
+        <div>
+          <img src={profile.photos.large || userPhoto} alt="Large avatar" />
+          {isOwner && <input type="file" onChange={onMainFotoSelected} />}
+        </div>
+
         <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+
         <div>Full name: {profile.fullName}</div>
         <div>About me: {profile.aboutMe}</div>
         <div>Looking for a job: {profile.lookingForAJob ? 'Yes' : 'No'}</div>
