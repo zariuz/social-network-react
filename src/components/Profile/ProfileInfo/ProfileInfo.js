@@ -5,7 +5,14 @@ import Preloader from '../../../components/common/Preloader/Preloader';
 import ProfileStatusWithHooks from './../ProfileStatus/ProfileStatusWithHooks';
 import ProfileDataFormReduxForm from './../ProfileDataForm/ProfileDataForm';
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
+const ProfileInfo = ({
+  profile,
+  status,
+  updateStatus,
+  isOwner,
+  savePhoto,
+  saveProfile,
+}) => {
   const [editMode, setEditMode] = useState(false);
 
   if (!profile) {
@@ -19,8 +26,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
   };
 
   const onSubmit = (formData) => {
-    //const { email, password, remeberMe } = formData;
-    alert(formData);
+    saveProfile(formData);
   };
 
   const goToEditMode = () => setEditMode(true);
@@ -41,7 +47,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
         <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
 
         {editMode ? (
-          <ProfileDataFormReduxForm profile={profile} />
+          <ProfileDataFormReduxForm profile={profile} onSubmit={onSubmit} />
         ) : (
           <ProfileData
             profile={profile}
