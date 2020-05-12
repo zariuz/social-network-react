@@ -3,7 +3,7 @@ import style from './ProfileInfo.module.css';
 import userPhoto from '../../../assets/images/user.png';
 import Preloader from '../../../components/common/Preloader/Preloader';
 import ProfileStatusWithHooks from './../ProfileStatus/ProfileStatusWithHooks';
-import ProfileDataFormReduxForm from './../ProfileDataForm/ProfileDataForm';
+import ProfileDataFormReduxForm from '../ProfileDataForm/ProfileDataFormReduxForm';
 
 const ProfileInfo = ({
   profile,
@@ -47,7 +47,10 @@ const ProfileInfo = ({
         <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
 
         {editMode ? (
-          <ProfileDataFormReduxForm profile={profile} onSubmit={onSubmit} />
+          <ProfileDataFormReduxForm
+            initialValues={profile}
+            onSubmit={onSubmit}
+          />
         ) : (
           <ProfileData
             profile={profile}

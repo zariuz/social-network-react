@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './ProfileDataForm.module.css';
+import styles from './ProfileDataFormReduxForm.module.css';
 import { Field, reduxForm } from 'redux-form';
 import { Input, Textarea } from '../../common/FormsControls/FormsControls';
 import {
   required,
   maxLengthCreator,
-} from './../../../utilities/validators/validators';
+} from '../../../utilities/validators/validators';
 
 const maxLength30 = maxLengthCreator(30);
 
@@ -68,7 +68,7 @@ const ProfileDataForm = ({ handleSubmit, error }) => {
 };
 
 const ProfileDataFormReduxForm = reduxForm({
-  form: 'editProfile', // a unique identifier for this form
+  form: 'editProfile',
 })(ProfileDataForm);
 
 export default ProfileDataFormReduxForm;
