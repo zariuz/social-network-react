@@ -9,7 +9,7 @@ import {
 
 const maxLength30 = maxLengthCreator(30);
 
-const ProfileDataForm = ({ handleSubmit, error }) => {
+const ProfileDataForm = ({ handleSubmit, error, profile }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -46,17 +46,17 @@ const ProfileDataForm = ({ handleSubmit, error }) => {
         />
       </div>
 
-      {/* <div>
+      <div>
         Contacts:
-        {facebook ? <div>Facebook: {facebook}</div> : null}
-        {website ? <div>Website: {website}</div> : null}
-        {vk ? <div>VK: {vk}</div> : null}
-        {twitter ? <div>Twitter: {twitter}</div> : null}
-        {instagram ? <div>Instagram: {instagram}</div> : null}
-        {youtube ? <div>Youtube: {youtube}</div> : null}
-        {github ? <div>Github: {github}</div> : null}
-        {mainLink ? <div>MainLink: {mainLink}</div> : null}
-      </div> */}
+        {Object.keys(profile.contacts).map((key) => {
+          return (
+            <div>
+              {key}:
+              <Field name={'contacts.' + key} type="text" component={Input} />
+            </div>
+          );
+        })}
+      </div>
 
       {error && <div className={styles.formSummaryError}>{error}</div>}
 

@@ -45,8 +45,7 @@ export const login = (email, password, remeberMe) => async (dispatch) => {
       response.data.messages.length > 0
         ? response.data.messages[0]
         : 'Common error';
-    let action = stopSubmit('login', { _error: message });
-    dispatch(action);
+    dispatch(stopSubmit('login', { _error: message }));
   }
 };
 
