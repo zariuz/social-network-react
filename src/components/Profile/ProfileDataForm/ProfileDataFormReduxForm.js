@@ -50,7 +50,7 @@ const ProfileDataForm = ({ handleSubmit, error, profile }) => {
         Contacts:
         {Object.keys(profile.contacts).map((key) => {
           return (
-            <div>
+            <div key={key}>
               {key}:
               <Field name={'contacts.' + key} type="text" component={Input} />
             </div>
