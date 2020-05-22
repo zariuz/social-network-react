@@ -11,6 +11,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
+import NotFound from './components/NotFound/NotFound';
 
 const DialogsContainer = lazy(() =>
   import('./components/Dialogs/DialogsContainer')
@@ -53,7 +54,7 @@ class App extends Component {
               <Login />
             </Route>
             <Route path="*">
-              <div>404 not found</div>
+              <NotFound />
             </Route>
           </Switch>
         </div>
