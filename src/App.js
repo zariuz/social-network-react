@@ -1,6 +1,6 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { compose } from 'redux';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -31,23 +31,31 @@ class App extends Component {
         <HeaderContainer />
         <Navbar />
         <div className="app-wrapper-content">
-          <Route path="/profile/:userId?">
-            <ProfileContainer />
-          </Route>
-          <Route path="/dialogs">
-            <Suspense fallback={<div>Загрузка...</div>}>
-              <DialogsContainer />
-            </Suspense>
-          </Route>
-          <Route path="/users">
-            <UsersContainer />
-          </Route>
-          <Route path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/profile" />
+            </Route>
+            <Route path="/profile/:userId?">
+              <ProfileContainer />
+            </Route>
+            <Route path="/dialogs">
+              <Suspense fallback={<div>Загрузка...</div>}>
+                <DialogsContainer />
+              </Suspense>
+            </Route>
+            <Route path="/users">
+              <UsersContainer />
+            </Route>
+            <Route path="/settings">
+              <Settings />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="*">
+              <div>404 not found</div>
+            </Route>
+          </Switch>
         </div>
       </div>
     );
