@@ -1,5 +1,5 @@
 import React from 'react';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = ({
@@ -20,7 +20,7 @@ const Profile = ({
         savePhoto={savePhoto}
         saveProfile={saveProfile}
       />
-      <MyPostsContainer />
+      <MyPosts />
     </div>
   );
 };

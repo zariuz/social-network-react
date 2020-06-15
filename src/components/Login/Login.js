@@ -14,44 +14,46 @@ const maxLength30 = maxLengthCreator(30);
 
 const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          name="email"
-          type="text"
-          placeholder="Email"
-          component={Input}
-          validate={[required, maxLength30]}
-        />
-      </div>
-      <div>
-        <Field
-          name="password"
-          type="password"
-          placeholder="Password"
-          component={Input}
-          validate={[required, maxLength30]}
-        />
-      </div>
-      <div>
-        <Field name="rememberMe" type="checkbox" component={Input} />
-        remember me
-      </div>
-      {captchaUrl && <img alt="captcha" src={captchaUrl} />}
-      {captchaUrl && (
-        <Field
-          name="captcha"
-          type="text"
-          placeholder="Enter characters"
-          component={Input}
-          validate={[required]}
-        />
-      )}
-      {error && <div className={styles.formSummaryError}>{error}</div>}
-      <div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <Field
+            name="email"
+            type="text"
+            placeholder="Email"
+            component={Input}
+            validate={[required, maxLength30]}
+          />
+        </div>
+        <div>
+          <Field
+            name="password"
+            type="password"
+            placeholder="Password"
+            component={Input}
+            validate={[required, maxLength30]}
+          />
+        </div>
+        <div>
+          <Field name="rememberMe" type="checkbox" component={Input} />
+          remember me
+        </div>
+        {captchaUrl && <img alt="captcha" src={captchaUrl} />}
+        {captchaUrl && (
+          <Field
+            name="captcha"
+            type="text"
+            placeholder="Enter characters"
+            component={Input}
+            validate={[required]}
+          />
+        )}
+        {error && <div className={styles.formSummaryError}>{error}</div>}
+        <div>
+          <button type="submit">Login</button>
+        </div>
+      </form>
+    </div>
   );
 };
 
@@ -73,6 +75,9 @@ const Login = ({ login, isAuth, captchaUrl }) => {
     <div className="">
       <h1>Login</h1>
       <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl} />
+      <p>If you don't have an account, use test login and password.</p>
+      <p>Login: free@samuraijs.com</p>
+      <p>Password: free</p>
     </div>
   );
 };
