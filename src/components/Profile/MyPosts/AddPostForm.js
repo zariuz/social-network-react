@@ -1,8 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, reset } from 'redux-form';
-import { addPostActionCreator } from '../../../redux/profile-reducer';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { Field, reduxForm } from 'redux-form';
 
 import {
   required,
