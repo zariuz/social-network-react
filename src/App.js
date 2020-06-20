@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import UsersContainer from './components/Users/UsersContainer';
-import Settings from './components/Settings/Settings';
+import News from './components/News/News';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
@@ -48,7 +48,7 @@ class App extends Component {
               <UsersContainer />
             </Route>
             <Route path="/settings">
-              <Settings />
+              <News />
             </Route>
             <Route path="/login">
               <Login />
