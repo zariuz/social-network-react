@@ -21,8 +21,7 @@ const User = ({ followingInProgress, unfollow, follow, user, index }) => {
               disabled={followingInProgress.some((id) => id === user.id)}
               onClick={() => {
                 unfollow(user.id);
-              }}
-            >
+              }}>
               Unfollow
             </button>
           ) : (
@@ -30,8 +29,7 @@ const User = ({ followingInProgress, unfollow, follow, user, index }) => {
               disabled={followingInProgress.some((id) => id === user.id)}
               onClick={() => {
                 follow(user.id);
-              }}
-            >
+              }}>
               Follow
             </button>
           )}
