@@ -5,11 +5,11 @@ import {
   setCurrentPage,
   toggleFollowingProgress,
   requestUsers,
-} from './../../redux/users-reducer';
+} from '../../redux/users-reducer';
 import { connect } from 'react-redux';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
-import { withAuthRedirect } from './../../hoc/withAuthRedirect';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import {
   getUsers,
@@ -19,9 +19,9 @@ import {
   getCurrentPage,
   getIsFetching,
   getFollowingInProgress,
-} from './../../redux/users-selectors';
+} from '../../redux/users-selectors';
 
-class UsersContainer extends Component {
+class UsersContainer extends Component<PorpsType> {
   componentDidMount() {
     const { currentPage, pageSize } = this.props;
     this.props.requestUsers(currentPage, pageSize);
@@ -72,5 +72,5 @@ export default compose(
     toggleFollowingProgress,
     requestUsers,
   }),
-  withAuthRedirect
+  withAuthRedirect,
 )(UsersContainer);
