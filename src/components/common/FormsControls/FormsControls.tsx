@@ -1,7 +1,14 @@
 import React from 'react';
 import styles from './FormsControls.module.css';
 
-export const Textarea = ({
+type PropsTypes = {
+  input: string;
+  meta: { touched: boolean; error: string };
+  type: string;
+  placeholder: string;
+};
+
+export const Textarea: React.FC<PropsTypes> = ({
   input,
   meta: { touched, error },
   type,
@@ -17,7 +24,7 @@ export const Textarea = ({
   );
 };
 
-export const Input = ({
+export const Input: React.FC<PropsTypes> = ({
   input,
   meta: { touched, error },
   type,

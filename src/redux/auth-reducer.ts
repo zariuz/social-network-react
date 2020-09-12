@@ -1,5 +1,5 @@
-import { authAPI, securityAPI } from '../api/api';
 import { stopSubmit } from 'redux-form';
+import { authAPI, resultCodesEnum, resultCodesForCaptcha, securityAPI } from '../api/api';
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
 const SET_CAPTCHA_URL_SUCCESS = 'auth/SET_CAPTCHA_URL_SUCCESS';
@@ -68,10 +68,10 @@ export const getCaptchaUrlSuccess = (
 });
 
 export const getAuthUserData = () => async (dispatch: any) => {
-  const response = await authAPI.me();
+  const meData = await authAPI.me();
 
-  if (response.data.resultCode === 0) {
-    const { id, login, email } = response.data.data;
+  if (meData.resultCode === resultCodesEnum.Success) {
+    const { id, login, email } = meData.data;
     dispatch(setAuthUserData(id, email, login, true));
   }
 };
@@ -82,16 +82,16 @@ export const login = (
   remeberMe: boolean,
   captcha: string,
 ) => async (dispatch: any) => {
-  const response = await authAPI.login(email, password, remeberMe, captcha);
-  if (response.data.resultCode === 0) {
+  const loginData = await authAPI.login(email, password, remeberMe, captcha);
+  if (loginData.resultCode === resultCodesEnum.Success) {
     //success, get auth data
     dispatch(getAuthUserData());
   } else {
-    if (response.data.resultCode === 10) {
+    if (loginData.resultCode === resultCodesForCaptcha.CaptchaIsRequired) {
       dispatch(getCaptchaUrl());
     }
     const message =
-      response.data.messages.length > 0 ? response.data.messages[0] : 'Common error';
+      loginData.messages.length > 0 ? loginData.messages[0] : 'Common error';
     dispatch(stopSubmit('login', { _error: message }));
   }
 };
@@ -103,8 +103,8 @@ export const getCaptchaUrl = () => async (dispatch: any) => {
 };
 
 export const logout = () => async (dispatch: any) => {
-  const response = await authAPI.logout();
-  if (response.data.resultCode === 0) {
+  const logoutData = await authAPI.logout();
+  if (logoutData.resultCode === resultCodesEnum.Success) {
     dispatch(setAuthUserData(null, null, null, false));
   }
 };
