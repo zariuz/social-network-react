@@ -13,9 +13,7 @@ import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import NotFound from './components/NotFound/NotFound';
 
-const DialogsContainer = lazy(() =>
-  import('./components/Dialogs/DialogsContainer')
-);
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class App extends Component {
   componentDidMount() {
@@ -33,29 +31,19 @@ class App extends Component {
         <Navbar />
         <div className="app-wrapper-content">
           <Switch>
-            <Route exact path="/">
-              <Redirect to="/profile" />
-            </Route>
-            <Route path="/profile/:userId?">
-              <ProfileContainer />
-            </Route>
+            <Route exact path="/" render={() => <Redirect to="/profile" />} />
+            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+
             <Route path="/dialogs">
               <Suspense fallback={<div>Загрузка...</div>}>
                 <DialogsContainer />
               </Suspense>
             </Route>
-            <Route path="/users">
-              <UsersContainer />
-            </Route>
-            <Route path="/settings">
-              <News />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
+
+            <Route path="/users" render={() => <UsersContainer />} />
+            <Route path="/settings" render={() => <News />} />
+            <Route path="/login" render={() => <Login />} />
+            <Route path="*" render={() => <NotFound />} />
           </Switch>
         </div>
       </div>
@@ -67,7 +55,4 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });
 
-export default compose(
-  connect(mapStateToProps, { initializeApp }),
-  withRouter
-)(App);
+export default compose(connect(mapStateToProps, { initializeApp }), withRouter)(App);
