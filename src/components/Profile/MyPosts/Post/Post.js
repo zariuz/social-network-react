@@ -1,10 +1,11 @@
 import React from 'react';
 import style from './Post.module.css';
+import userPhoto from '../../../../assets/images/user.png';
 
 const Post = ({ message, likesCount }) => {
   return (
     <div className={style.item}>
-      <img src="https://international-advisory-experts.com/wp-content/uploads/2019/02/avatar-1-.png"></img>
+      <img src={userPhoto} alt="user"></img>
       {message}
       <div>
         <span>like </span>

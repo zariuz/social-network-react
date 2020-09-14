@@ -9,6 +9,12 @@ export const instance = axios.create({
   },
 });
 
+export type APIResponseType<D = {}, RC = resultCodesEnum> = {
+  data: D;
+  messages: string[];
+  resultCode: RC;
+};
+
 export enum resultCodesEnum {
   Success = 0,
   Error = 1,

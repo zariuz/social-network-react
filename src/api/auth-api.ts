@@ -1,20 +1,20 @@
-import { instance, resultCodesEnum, resultCodesForCaptcha } from './api';
+import { instance, APIResponseType, resultCodesEnum, resultCodesForCaptcha } from './api';
 
-type MeResponseType = {
-  data: { id: number; email: string; login: string };
-  resultCode: resultCodesEnum;
-  messages: string[];
+type MeResponseDataType = {
+  id: number;
+  email: string;
+  login: string;
 };
 
-type LoginResponseType = {
-  data: { userId: number };
-  resultCode: resultCodesEnum | resultCodesForCaptcha;
-  messages: string[];
+type LoginResponseDataType = {
+  userId: number;
 };
 
 export const authAPI = {
   me() {
-    return instance.get<MeResponseType>(`auth/me`).then((res) => res.data);
+    return instance
+      .get<APIResponseType<MeResponseDataType>>(`auth/me`)
+      .then((res) => res.data);
   },
   login(
     email: string,
@@ -23,7 +23,9 @@ export const authAPI = {
     captcha: null | string = null,
   ) {
     return instance
-      .post<LoginResponseType>(`auth/login`, {
+      .post<
+        APIResponseType<LoginResponseDataType, resultCodesEnum | resultCodesForCaptcha>
+      >(`auth/login`, {
         email,
         password,
         remeberMe,
