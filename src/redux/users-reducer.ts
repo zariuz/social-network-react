@@ -1,7 +1,6 @@
 import { usersAPI } from '../api/users-api';
 import { UserType } from '../types/types';
-import { AppStateType, InferActionsTypes } from './redux-store';
-import { ThunkAction } from 'redux-thunk';
+import { BaseThunkType, InferActionsTypes } from './redux-store';
 
 const initialState = {
   users: [] as UserType[],
@@ -12,8 +11,6 @@ const initialState = {
   isFetching: true,
   followingInProgress: [] as number[], //Array of users id
 };
-
-export type InitialStateType = typeof initialState;
 
 const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
@@ -69,8 +66,6 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialStateT
   }
 };
 
-type ActionsTypes = InferActionsTypes<typeof actions>;
-
 export const actions = {
   followSuccess: (userId: number) =>
     ({
@@ -112,8 +107,6 @@ export const actions = {
     } as const),
 };
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
-
 export const requestUsers = (currentPage: number, pageSize: number): ThunkType => async (
   dispatch,
 ) => {
@@ -145,3 +138,7 @@ export const unfollow = (userId: number): ThunkType => async (dispatch) => {
 };
 
 export default usersReducer;
+
+export type InitialStateType = typeof initialState;
+type ActionsTypes = InferActionsTypes<typeof actions>;
+type ThunkType = BaseThunkType<ActionsTypes>;

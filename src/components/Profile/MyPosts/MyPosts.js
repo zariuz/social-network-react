@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import style from './MyPosts.module.css';
 import Post from './Post/Post';
 import AddPostForm from './AddPostForm';
-import { addPostActionCreator } from '../../../redux/profile-reducer';
+import { actions } from '../../../redux/profile-reducer';
 
 const MyPosts = ({ profilePage, addPost }) => {
   let onAddPost = (formData) => {
@@ -34,7 +34,7 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
   return {
     addPost: (newPostText) => {
-      dispatch(addPostActionCreator(newPostText));
+      dispatch(actions.addPostActionCreator(newPostText));
     },
   };
 };
