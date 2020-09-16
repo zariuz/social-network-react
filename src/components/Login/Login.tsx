@@ -15,7 +15,7 @@ type LoginFormOwnProps = {
 };
 
 const LoginForm: React.FC<
-  InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps
+  InjectedFormProps<LoginFormType, LoginFormOwnProps> & LoginFormOwnProps
 > = ({ handleSubmit, error, captchaUrl }) => {
   return (
     <div>
@@ -61,11 +61,11 @@ const LoginForm: React.FC<
   );
 };
 
-const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({
+const LoginReduxForm = reduxForm<LoginFormType, LoginFormOwnProps>({
   form: 'login',
 })(LoginForm);
 
-type LoginFormValuesType = {
+type LoginFormType = {
   captcha: string;
   remeberMe: boolean;
   password: string;

@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import style from './ProfileInfo.module.css';
 import userPhoto from '../../../assets/images/user.png';
-import Preloader from '../../../components/common/Preloader/Preloader';
-import ProfileStatusWithHooks from './../ProfileStatus/ProfileStatusWithHooks';
+import Preloader from '../../common/Preloader/Preloader';
+import ProfileStatusWithHooks from '../ProfileStatus/ProfileStatusWithHooks';
 import ProfileDataFormReduxForm from '../ProfileDataForm/ProfileDataFormReduxForm';
+import { ProfileType } from '../../../types/types';
 
-const ProfileInfo = ({
+type PropsType = {
+  profile: ProfileType | null;
+  status: string;
+  updateStatus: (status: string) => void;
+  isOwner: boolean;
+  savePhoto: (file: File) => void;
+  saveProfile: (profile: ProfileType) => Promise<any>;
+};
+
+const ProfileInfo: React.FC<PropsType> = ({
   profile,
   status,
   updateStatus,
@@ -19,13 +29,13 @@ const ProfileInfo = ({
     return <Preloader />;
   }
 
-  const onMainFotoSelected = (e) => {
-    if (e.target.files.length) {
+  const onMainFotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length) {
       savePhoto(e.target.files[0]);
     }
   };
 
-  const onSubmit = (formData) => {
+  const onSubmit = (formData: ProfileType) => {
     saveProfile(formData).then(() => {
       setEditMode(false);
     });
@@ -55,18 +65,24 @@ const ProfileInfo = ({
             profile={profile}
           />
         ) : (
-          <ProfileData
-            profile={profile}
-            isOwner={isOwner}
-            goToEditMode={goToEditMode}
-          />
+          <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode} />
         )}
       </div>
     </div>
   );
 };
 
-const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+type ProfileDataPropsType = {
+  profile: ProfileType;
+  isOwner: boolean;
+  goToEditMode: () => void;
+};
+
+const ProfileData: React.FC<ProfileDataPropsType> = ({
+  profile,
+  isOwner,
+  goToEditMode,
+}) => {
   const {
     facebook,
     website,

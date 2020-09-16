@@ -1,15 +1,18 @@
 import React from 'react';
 import styles from './ProfileDataFormReduxForm.module.css';
-import { Field, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { Input, Textarea } from '../../common/FormsControls/FormsControls';
-import {
-  required,
-  maxLengthCreator,
-} from '../../../utilities/validators/validators';
+import { required, maxLengthCreator } from '../../../utilities/validators/validators';
+import { ProfileType } from '../../../types/types';
 
 const maxLength30 = maxLengthCreator(30);
+type PropsType = {
+  profile: ProfileType;
+};
 
-const ProfileDataForm = ({ handleSubmit, error, profile }) => {
+const ProfileDataForm: React.FC<
+  InjectedFormProps<ProfileType, PropsType> & PropsType
+> = ({ handleSubmit, error, profile }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -67,7 +70,7 @@ const ProfileDataForm = ({ handleSubmit, error, profile }) => {
   );
 };
 
-const ProfileDataFormReduxForm = reduxForm({
+const ProfileDataFormReduxForm = reduxForm<ProfileType, PropsType>({
   form: 'editProfile',
 })(ProfileDataForm);
 

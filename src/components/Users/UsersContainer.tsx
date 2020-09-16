@@ -78,7 +78,7 @@ let mapStateToProps = (state: AppStateType): MapStatePorpsType => {
   };
 };
 
-export default compose(
+export default compose<React.ComponentType>(
   //connect<MapStatePorpsType, MapDispatchPorpsType, AppStateType>({})
   connect(mapStateToProps, {
     follow,
