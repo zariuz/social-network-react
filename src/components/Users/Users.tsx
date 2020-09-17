@@ -1,4 +1,5 @@
 import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Pagination from '../common/Pagination/Pagination';
 import User from './User/User';
 import { UserType } from '../../types/types';
@@ -28,6 +29,7 @@ const Users: React.FC<PropsType> = ({
 }) => {
   return (
     <div>
+      <UsersSearchForm />
       <Pagination
         totalUsersCount={totalUsersCount}
         pageSize={pageSize}
@@ -46,6 +48,36 @@ const Users: React.FC<PropsType> = ({
           />
         ))}
       </div>
+    </div>
+  );
+};
+
+const usersSearchFormValidate = (values: any) => {
+  const errors = {};
+  return errors;
+};
+
+const UsersSearchForm = () => {
+  return (
+    <div>
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        validate={usersSearchFormValidate}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 400);
+        }}>
+        {({ isSubmitting }) => (
+          <Form>
+            <Field type="email" name="email" />
+            <button type="submit" disabled={isSubmitting}>
+              Find
+            </button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
