@@ -9,6 +9,11 @@ import { initialStateType } from '../../redux/dialogs-reducer';
 
 const maxLength10 = maxLengthCreator(10);
 
+type PropsType = {
+  dialogsPage: initialStateType;
+  sendMessage: (messageText: string) => void;
+};
+
 const AddMessageForm: React.FC<InjectedFormProps<NewMessageFormType>> = ({
   handleSubmit,
 }) => {
@@ -38,11 +43,6 @@ type NewMessageFormType = {
   newMessageBody: string;
 };
 
-type PropsType = {
-  sendMessage: (messageText: string) => void;
-  dialogsPage: initialStateType;
-};
-
 const Dialogs: React.FC<PropsType> = ({ sendMessage, dialogsPage }) => {
   const addNewMessage = (values: NewMessageFormType) => {
     sendMessage(values.newMessageBody);
@@ -55,7 +55,7 @@ const Dialogs: React.FC<PropsType> = ({ sendMessage, dialogsPage }) => {
   ));
 
   let messagesElements = state.messages.map((m) => (
-    <Message message={m.message} key={m.id} id={m.id} />
+    <Message message={m.message} key={m.id} />
   ));
 
   return (
