@@ -1,8 +1,9 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Pagination from '../common/Pagination/Pagination';
 import User from './User/User';
 import { UserType } from '../../types/types';
+import { FilterType } from '../../redux/users-reducer';
+import { UsersSearchForm } from './UsersSearchForm';
 
 type PropsType = {
   totalUsersCount: number;
@@ -10,6 +11,7 @@ type PropsType = {
   portionSize: number;
   currentPage: number;
   onPageChanged: (pageNumber: number) => void;
+  onFilterChanged: (filter: FilterType) => void;
   users: UserType[];
   followingInProgress: number[];
   unfollow: (userId: number) => void;
@@ -22,6 +24,7 @@ const Users: React.FC<PropsType> = ({
   portionSize,
   currentPage,
   onPageChanged,
+  onFilterChanged,
   users,
   followingInProgress,
   unfollow,
@@ -29,7 +32,7 @@ const Users: React.FC<PropsType> = ({
 }) => {
   return (
     <div>
-      <UsersSearchForm />
+      <UsersSearchForm onFilterChanged={onFilterChanged} />
       <Pagination
         totalUsersCount={totalUsersCount}
         pageSize={pageSize}
@@ -48,36 +51,6 @@ const Users: React.FC<PropsType> = ({
           />
         ))}
       </div>
-    </div>
-  );
-};
-
-const usersSearchFormValidate = (values: any) => {
-  const errors = {};
-  return errors;
-};
-
-const UsersSearchForm = () => {
-  return (
-    <div>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validate={usersSearchFormValidate}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}>
-        {({ isSubmitting }) => (
-          <Form>
-            <Field type="email" name="email" />
-            <button type="submit" disabled={isSubmitting}>
-              Find
-            </button>
-          </Form>
-        )}
-      </Formik>
     </div>
   );
 };
