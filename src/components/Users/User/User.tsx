@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { UserType } from '../../../types/types';
 
 type PropsType = {
-  index: number;
+  key: number;
   user: UserType;
   followingInProgress: number[];
   unfollow: (userId: number) => void;
@@ -17,10 +17,10 @@ const User: React.FC<PropsType> = ({
   unfollow,
   follow,
   user,
-  index,
+  key,
 }) => {
   return (
-    <div key={index}>
+    <div key={key}>
       <span>
         <div className={style.avatar}>
           <NavLink to={'/profile/' + user.id}>

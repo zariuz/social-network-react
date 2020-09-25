@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import UsersContainer from './components/Users/UsersContainer';
+import { UsersPage } from './components/Users/UsersPage';
 import News from './components/News/News';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -43,7 +43,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
             <Route exact path="/" render={() => <Redirect to="/profile" />} />
             <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
             <Route path="/dialogs" render={() => <SuspendedDialogs />} />
-            <Route path="/users" render={() => <UsersContainer />} />
+            <Route path="/users" render={() => <UsersPage pageTitle={'Users'} />} />
             <Route path="/settings" render={() => <News />} />
             <Route path="/login" render={() => <Login />} />
             <Route path="*" render={() => <NotFound />} />
