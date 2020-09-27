@@ -15,7 +15,7 @@ import {
 
 type PropsType = {};
 
-const Users: React.FC<PropsType> = () => {
+export const Users: React.FC<PropsType> = () => {
   const users = useSelector(getUsers);
   const totalUsersCount = useSelector(getTotalUsersCount);
   const currentPage = useSelector(getCurrentPage);
@@ -65,5 +65,3 @@ const Users: React.FC<PropsType> = () => {
     </div>
   );
 };
-
-export default Users;

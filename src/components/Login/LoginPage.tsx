@@ -3,7 +3,7 @@ import styles from './Login.module.css';
 import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import { required, maxLengthCreator } from '../../utilities/validators/validators';
 import { Input } from '../common/FormsControls/FormsControls';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
 import { AppStateType } from '../../redux/redux-store';
@@ -72,14 +72,14 @@ type LoginFormType = {
   email: string;
 };
 
-const Login: React.FC<MapStatePropsTypes & MapDispatchPropsTypes> = ({
-  login,
-  isAuth,
-  captchaUrl,
-}) => {
-  const onSubmit = (formData: any) => {
+export const LoginPage: React.FC = () => {
+  const captchaUrl = useSelector((state: AppStateType) => state.auth.captchaUrl);
+  const isAuth = useSelector((state: AppStateType) => state.auth.isAuth);
+  const dispatch = useDispatch();
+
+  const onSubmit = (formData: LoginFormType) => {
     const { email, password, remeberMe, captcha } = formData;
-    login(email, password, remeberMe, captcha);
+    dispatch(login(email, password, remeberMe, captcha));
   };
 
   if (isAuth) {
@@ -96,18 +96,3 @@ const Login: React.FC<MapStatePropsTypes & MapDispatchPropsTypes> = ({
     </div>
   );
 };
-
-type MapStatePropsTypes = {
-  captchaUrl: string | null;
-  isAuth: boolean;
-};
-
-type MapDispatchPropsTypes = {
-  login: (email: string, password: string, remeberMe: boolean, captcha: string) => void;
-};
-
-const mapStateToProps = (state: AppStateType): MapStatePropsTypes => {
-  return { isAuth: state.auth.isAuth, captchaUrl: state.auth.captchaUrl };
-};
-
-export default connect(mapStateToProps, { login })(Login);

@@ -9,7 +9,7 @@ import { UsersPage } from './components/Users/UsersPage';
 import News from './components/News/News';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
+import { LoginPage } from './components/Login/LoginPage';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import NotFound from './components/NotFound/NotFound';
@@ -45,7 +45,7 @@ class App extends Component<MapPropsType & DispatchPropsType> {
             <Route path="/dialogs" render={() => <SuspendedDialogs />} />
             <Route path="/users" render={() => <UsersPage pageTitle={'Users'} />} />
             <Route path="/settings" render={() => <News />} />
-            <Route path="/login" render={() => <Login />} />
+            <Route path="/login" render={() => <LoginPage />} />
             <Route path="*" render={() => <NotFound />} />
           </Switch>
         </div>
