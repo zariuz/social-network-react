@@ -57,7 +57,7 @@ export const Users: React.FC<PropsType> = () => {
     }
 
     dispatch(requestUsers(actualPage, pageSize, actualFilter));
-  }, []);
+  }, [dispatch, currentPage, filter, pageSize, history.location.search]);
 
   useEffect(() => {
     const query: QueryParamsType = {};
@@ -70,7 +70,7 @@ export const Users: React.FC<PropsType> = () => {
       pathname: '/users',
       search: queryString.stringify(query),
     });
-  }, [filter, currentPage]);
+  }, [filter, currentPage, history]);
 
   const onPageChanged = (pageNumber: number) => {
     dispatch(requestUsers(pageNumber, pageSize, filter));

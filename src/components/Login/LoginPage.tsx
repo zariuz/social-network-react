@@ -90,9 +90,11 @@ export const LoginPage: React.FC = () => {
     <div className="">
       <h1>Login</h1>
       <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl} />
-      <p>If you don't have an account, use test login and password.</p>
-      <p>Login: free@samuraijs.com</p>
-      <p>Password: free</p>
+      <div className={styles.loginInfo}>
+        <p>If you don't have an account, use test login and password.</p>
+        <p>Login: free@samuraijs.com</p>
+        <p>Password: free</p>
+      </div>
     </div>
   );
 };

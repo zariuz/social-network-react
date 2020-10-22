@@ -8,10 +8,6 @@ export const getPageSize = (state: AppStateType) => {
   return state.usersPage.pageSize;
 };
 
-export const getPortionSize = (state: AppStateType) => {
-  return state.usersPage.portionSize;
-};
-
 export const getTotalUsersCount = (state: AppStateType) => {
   return state.usersPage.totalUsersCount;
 };
@@ -30,4 +26,8 @@ export const getFollowingInProgress = (state: AppStateType) => {
 
 export const getUsersFilter = (state: AppStateType) => {
   return state.usersPage.filter;
+};
+
+export const getPortionSize = (state: AppStateType) => {
+  return state.usersPage.portionSize;
 };
